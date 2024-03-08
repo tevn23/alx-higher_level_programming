@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-zen_of_python = "\"The Zen of Python\", by Tim Peters\n"
+zen_of_python = "\"The Zen of Python\", by Tim Peters"
 print(zen_of_python)
