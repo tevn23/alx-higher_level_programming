@@ -6,10 +6,10 @@ let i = 0;
 const argInt = parseInt(args[0]);
 
 if (!isNaN(argInt)) {
-    while (i < argInt) {
-        console.log('C is fun');
-        i++;
-    }
+  while (i < argInt) {
+    console.log('C is fun');
+    i++;
+  }
 } else {
-    console.log('Missing number of occurrences');
+  console.log('Missing number of occurrences');
 }
