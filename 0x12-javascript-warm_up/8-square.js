@@ -13,5 +13,5 @@ if (!isNaN(argInt)) {
     console.log(row);
   }
 } else {
-  console.log('Missing number of occurrences');
+  console.log('Missing size');
 }
