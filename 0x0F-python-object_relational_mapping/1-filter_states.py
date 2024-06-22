@@ -2,6 +2,7 @@
 """
 Module containing function to list states
 """
+
 import sys
 import MySQLdb
 
@@ -23,27 +24,28 @@ def list_states_with_upper_N(username, password, database):
         )
 
         cursor = db.cursor()
-        query = "SELECT id, name FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
-        cursor.execute(query)
+        q = "SELECT id, name FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
+        cursor.execute(q)
         states = cursor.fetchall()
 
         if not states:
             sys.exit(0)
-        
+
         for state in states:
             print(state)
 
     except MySQLdb.Error as e:
         sys.exit(1)
-    
+
     except Exception as e:
         sys.exit(1)
-    
+
     finally:
         if cursor:
             cursor.close()
         if db:
             db.close()
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
