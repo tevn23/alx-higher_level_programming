@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Module to run state table"""
 import sys
 import MySQLdb
 
