@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-#!/usr/bin/python3
 """
-A script that takes in safe arguments and displays all values in the states table
-of hbtn_0e_0_usa where name matches the argument.
+A script that takes in safe arguments and displays all values in the states
+table of hbtn_0e_0_usa where name matches the argument.
 
 Usage:
 ./<script_name> <mysql_username> <mysql_password> <database_name> <state_name>
