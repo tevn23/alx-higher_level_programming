@@ -1,13 +1,10 @@
 #!/usr/bin/python3
-"""Module to run state table"""
 import sys
 import MySQLdb
 
-
-def main():
-    """Display state table values """
+if __name__ == "__main__":
     if len(sys.argv) != 5:
-        return
+        sys.exit(1)
 
     mysql_username = sys.argv[1]
     mysql_password = sys.argv[2]
@@ -22,21 +19,15 @@ def main():
             passwd=mysql_password,
             db=database_name
         )
-
-        cur = db.cursor()
-        query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(state_name)
-        cur.execute(query)
-        rows = cur.fetchall()
-
-        for row in rows:
-            print(row)
-
-        cur.close()
-        db.close()
-
-    except MySQLdb.Error:
-        return
-
-
-if __name__ == "__main__":
-    main()
+        c = db.cursor()
+        query = ("SELECT * FROM `states` WHERE BINARY `name` = '{}' "
+                 "ORDER BY `id` ASC").format(state_name)
+        c.execute(query)
+        [print(state) for state in c.fetchall()]
+    except MySQLdb.Error as e:
+        print("Error {}: {}".format(e.args[0], e.args[1]))
+    finally:
+        if c:
+            c.close()
+        if db:
+            db.close()
