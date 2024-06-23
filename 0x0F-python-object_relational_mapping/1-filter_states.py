@@ -27,7 +27,7 @@ if __name__ == "__main__":
         )
 
         cursor = db.cursor()
-        q = "SELECT id, name FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
+        q = "SELECT * FROM states ORDER BY id ASC"
         cursor.execute(q)
         states = cursor.fetchall()
 
@@ -35,7 +35,8 @@ if __name__ == "__main__":
             sys.exit(0)
 
         for state in states:
-            print(state)
+            if state[1][0] == "N":
+                print(state)
 
     except Exception:
         sys.exit(1)
