@@ -2,15 +2,18 @@
 """
 Module containing function to list states
 """
-
 import sys
 import MySQLdb
 
 
-def list_states_with_upper_N(username, password, database):
-    """
-    Lists all states with upper N from the database hbtn_0e_0_usa
-    """
+if __name__ == "__main__":
+    if len(sys.argv) != 4:
+        sys.exit(1)
+
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
+
     try:
         if not username or not password or not database:
             sys.exit(1)
@@ -34,10 +37,7 @@ def list_states_with_upper_N(username, password, database):
         for state in states:
             print(state)
 
-    except MySQLdb.Error as e:
-        sys.exit(1)
-
-    except Exception as e:
+    except Exception:
         sys.exit(1)
 
     finally:
@@ -45,14 +45,3 @@ def list_states_with_upper_N(username, password, database):
             cursor.close()
         if db:
             db.close()
-
-
-if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        sys.exit(1)
-
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
-    list_states_with_upper_N(username, password, database)
