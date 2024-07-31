@@ -10,11 +10,11 @@ const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
 
 request(apiUrl, (error, response, body) => {
   if (error) {
-     console.log(error);
-    } else if (response.statusCode === 200) {
-      const data = JSON.parse(body);
-       console.log(data.title);
-      } else {
-        console.log(`Error: ${response.statusCode}`);
-      }
+    console.log(error);
+  } else if (response.statusCode === 200) {
+    const data = JSON.parse(body);
+    console.log(data.title);
+  } else {
+    console.log(`Error: ${response.statusCode}`);
+  }
 });
