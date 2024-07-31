@@ -1,12 +1,9 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 
 const request = require('request');
 
 // Get the API URL from the command line arguments
 const apiUrl = process.argv[2];
-
-// Character ID for Wedge Antilles
-const wedgeAntillesId = '18';
 
 request(apiUrl, (error, response, body) => {
   if (error) {
@@ -19,14 +16,17 @@ request(apiUrl, (error, response, body) => {
     return;
   }
 
-  const data = JSON.parse(body);
-  let count = 0;
+  const todos = JSON.parse(body);
+  const completedTasks = {};
 
-  data.results.forEach(film => {
-    if (film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${wedgeAntillesId}/`)) {
-      count++;
+  todos.forEach(todo => {
+    if (todo.completed) {
+      if (!completedTasks[todo.userId]) {
+        completedTasks[todo.userId] = 0;
+      }
+      completedTasks[todo.userId]++;
     }
   });
 
-  console.log(count);
+  console.log(completedTasks);
 });
